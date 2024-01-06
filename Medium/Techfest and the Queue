@@ -1,0 +1,41 @@
+class Solution {
+public:
+
+
+int Sieve(int n, int *prime){
+        
+        //vector<int>v;
+        int c=0;
+        while(n!=1){
+            //v.emplace_back(prime[n]);
+            c++;
+            n = n / prime[n];
+        }
+        return /*v.size()*/c;
+    }
+    
+	int sumOfPowers(int a, int b){
+	    // Code here
+	    int maxi = b;
+        int prime[b+1];
+        for(int i = 2 ; i <= b ; i++){
+        	prime[i]=i;
+        }
+        prime[0]=0;
+        prime[1]=1;
+        for(int i = 2 ; i * i <= b ; i++){
+            if(prime[i]==i){
+                for(int p = i * i ; p <= b ; p += i){
+                    prime[p]=i;
+                }
+            }
+        }
+	    int ans=0;
+	    for(int i = a ; i < b+1 ; i++){
+	        ans+=Sieve(i,prime);
+	        
+	    }
+	    
+	    return ans;
+	}
+};
