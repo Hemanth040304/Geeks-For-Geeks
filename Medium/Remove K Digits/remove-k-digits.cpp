@@ -10,8 +10,6 @@ using namespace std;
 class Solution {
   public:
     string removeKdigits(string S, int K) {
-        if(K==0)return S;
-        if(S.size() <= K)return "0";
         stack<char>st;
         for(int i = 0 ; i < S.size() ; i++){
             if((st.empty()) and S[i]!='0' and K>0){
