@@ -19,7 +19,7 @@ class Solution
             cnt=1+fun(i+1,j+1,k+1,n,m,l,text1,text2,text3);
         }
         else{
-            cnt=0+max(max(fun(i+1,j,k,n,m,l,text1,text2,text3),fun(i,j+1,k,n,m,l,text1,text2,text3)),max(max(fun(i,j,k+1,n,m,l,text1,text2,text3),fun(i+1,j+1,k,n,m,l,text1,text2,text3)),max(fun(i,j+1,k+1,n,m,l,text1,text2,text3),fun(i+1,j,k+1,n,m,l,text1,text2,text3))));
+            cnt=0+max(max(fun(i+1,j,k,n,m,l,text1,text2,text3),fun(i,j+1,k,n,m,l,text1,text2,text3)),fun(i,j,k+1,n,m,l,text1,text2,text3));
         }
         return dp[i][j][k]=cnt;
     }
@@ -31,6 +31,7 @@ class Solution
             return fun(0,0,0,n1,n2,n3,A,B,C);
         }
 };
+
 
 
 //{ Driver Code Starts.
