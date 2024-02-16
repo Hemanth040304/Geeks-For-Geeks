@@ -124,8 +124,8 @@ public:
 class Solution
 {
 public:
-
-    void Inorder(vector<int> &v, Node *root){
+    //Another way
+    /*void Inorder(vector<int> &v, Node *root){
         if(root==NULL)return;
         Inorder(v,root->left);
         v.emplace_back(root->data);
@@ -150,6 +150,29 @@ public:
                 t = NN;
             }
         }
+        return Ans = Ans->right;
+    }*/
+    void Inorder(Node* &t, Node* root){
+        if(root==NULL)return;
+        Inorder(t,root->left);
+        Node *NN = new Node(root->data);
+        if(t==NULL){
+            t = NN;
+        }
+        else{
+            t -> right = NN;
+            t = NN;
+        }
+        Inorder(t,root->right);
+    }
+    
+    Node *flattenBST(Node *root)
+    {
+        // code here
+        
+        Node *Ans = new Node(NULL);
+        Node *t = Ans;
+        Inorder(t,root);
         return Ans = Ans->right;
     }
 };
