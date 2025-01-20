@@ -5,25 +5,27 @@ using namespace std;
 
 // } Driver Code Ends
 class Solution {
+  private:
+    int Love(int ind, vector<int> &height, vector<int> &dp) {
+        if (ind <= 0) return 0;
+        if (dp[ind] != -1) return dp[ind];
+        
+        int oneStep = Love(ind - 1, height, dp) + abs(height[ind] - height[ind - 1]);
+        int twoStep = INT_MAX;
+        if (ind > 1) twoStep = Love(ind - 2, height, dp) + abs(height[ind] - height[ind - 2]);
+        
+        return dp[ind] = min(oneStep, twoStep);
+    }
+    
   public:
     int minCost(vector<int>& height) {
         // Code here
         int n = height.size();
         vector<int> dp(n + 1, -1);
-        
-        dp[0] = 0;
-        dp[1] = abs(height[1] - height[0]);
-        
-        for (int i = 2; i <= n; i++) {
-            int a = dp[i - 1] + abs(height[i] - height[i - 1]);
-            int b = dp[i - 2] + abs(height[i] - height[i - 2]);
-            dp[i] = min(a, b);
-        }
-        
-        
-        return dp[n - 1];
+        return Love(n - 1, height, dp);
     }
 };
+
 
 //{ Driver Code Starts.
 
